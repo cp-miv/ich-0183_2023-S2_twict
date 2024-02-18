@@ -43,4 +43,23 @@ class UserController extends \App\Controllers\AppController
 
         $this->redirect('/user/index');
     }
+
+    public function remove(): void
+    {
+        $userId = (int)$_GET['id'];
+        $this->view['user'] = User::find($userId);
+    }
+
+    public function remove_post(): void
+    {
+        $user = $_POST['user'];
+
+        if (!User::remove($user)) {
+            $this->flash->warning('Erreur lors de la suppression de l\'utilisateur');
+            $this->redirect('/user/index');
+        }
+
+        $this->flash->success('Utilisateur supprimé');
+        $this->redirect('/user/index');
+    }
 }

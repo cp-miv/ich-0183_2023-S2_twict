@@ -71,4 +71,19 @@ class User extends \Core\Model
 
         return $success;
     }
+
+    public static function remove(array $model): bool
+    {
+        $db = static::getDB();
+
+        $success = $db
+            ->prepare(<<< SQL
+                DELETE FROM `users`
+                WHERE `id` = {$model['id']}
+                LIMIT 1;
+                SQL)
+            ->execute();
+
+        return $success;
+    }
 }
