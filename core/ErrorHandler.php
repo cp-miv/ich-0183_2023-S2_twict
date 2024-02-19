@@ -36,21 +36,21 @@ class ErrorHandler
     /**
      * Exception handler.
      *
-     * @param Exception $exception  The exception
+     * @param Throwable $exception  The exception
      *
      * @return void
      */
-    public static function handleException(\Exception $exception): void
+    public static function handleException(\Throwable $exception): void
     {
-        ?>
+?>
         <h1>Fatal error</h1>
         <p>Uncaught exception: <?= get_class($exception) ?></p>
         <p>Message: <?= $exception->getMessage() ?></p>
         <p>Stack trace:
-            <pre><?= $exception->getTraceAsString() ?></pre>
+        <pre><?= $exception->getTraceAsString() ?></pre>
         </p>
         <p>Thrown in <?= $exception->getFile() ?> on line <?= $exception->getLine() ?></p>
-        <?php
+<?php
 
         $message = 'Uncaught exception: "' . get_class($exception) . '"' . PHP_EOL;
         $message .= 'with message "' . $exception->getMessage() . '"' . PHP_EOL;
