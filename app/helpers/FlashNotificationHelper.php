@@ -12,7 +12,7 @@ class FlashNotificationHelper
     {
         $this->backendKey = 'notifications';
     }
-    
+
 
     public function success(string $content): FlashNotificationHelper
     {
