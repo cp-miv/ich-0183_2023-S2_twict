@@ -20,7 +20,7 @@ class User extends \Core\Model
         return $models;
     }
 
-    public static function find(int $id): array
+    public static function find(int $id): ?array
     {
         $db = static::getDB();
 
@@ -31,7 +31,7 @@ class User extends \Core\Model
                 WHERE `id` = {$id}
                 LIMIT 1;
             SQL)
-            ->fetch();
+            ->fetch() ?: null;
 
         return $model;
     }
@@ -87,7 +87,7 @@ class User extends \Core\Model
         return $success;
     }
 
-    public static function findByMailAddressAndPassword(string $mailAddress, string $password): array
+    public static function findByMailAddressAndPassword(string $mailAddress, string $password): ?array
     {
         $db = static::getDB();
 
@@ -99,7 +99,7 @@ class User extends \Core\Model
                 AND `password`= '{$password}'
                 LIMIT 1;
                 SQL)
-            ->fetch();
+            ->fetch() ?: null;
 
         return $model;
     }
