@@ -20,7 +20,7 @@ class User extends \Core\Model
         return $models;
     }
 
-    public static function find(int $id): array
+    public static function find(int $id): ?array
     {
         $db = static::getDB();
 
@@ -32,6 +32,10 @@ class User extends \Core\Model
                 LIMIT 1;
             SQL)
             ->fetch();
+
+        if ($model === false) {
+            $model = null;
+        }
 
         return $model;
     }
